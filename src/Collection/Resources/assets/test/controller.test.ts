@@ -91,7 +91,7 @@ describe('CollectionController', () => {
         expect(getByTestId(container, 'collection')).toHaveAttribute('data-controller', 'symfony--ux-collection--collection');
     });
 
-    it('collection without add button should still create a button', async () => {
+    it('should create a add button when no button given', async () => {
         const container = mountDOM(simpleCollectionWithoutButtons);
 
         const element = await waitFor(() => getByText(container, 'Add'));
@@ -99,7 +99,15 @@ describe('CollectionController', () => {
         expect(element).toBeInTheDocument();
     });
 
-    it('click on add button should add a new collection', async () => {
+    it('should create a add button when button is given', async () => {
+        const container = mountDOM(simpleCollection);
+
+        const element = await waitFor(() => getByText(container, 'Add button'));
+
+        expect(element).toBeInTheDocument();
+    });
+
+    it('should create new collection on click on add button', async () => {
         const container = mountDOM(simpleCollection);
 
         await waitFor(() => getByText(container, 'Add button'));
@@ -115,7 +123,7 @@ describe('CollectionController', () => {
         expect(container.querySelectorAll('.team-entry').length).toBe(1);
     });
 
-    it('click on remove button should remove a collection', async () => {
+    it('should remove collection on click on delete button', async () => {
         const container = mountDOM(simpleCollection);
 
         await waitFor(() => getByText(container, 'Add button'));
