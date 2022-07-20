@@ -44,7 +44,6 @@ export default class extends Controller {
     createButton(collectionEl: HTMLElement, buttonType: ButtonType): HTMLElement | null {
         const attributeName = `${ButtonType[buttonType].toLowerCase()}Button`;
         const button = collectionEl.dataset[attributeName] ?? (this.element as HTMLElement).dataset[attributeName];
-        console.log(button);
 
         // Button explicitly disabled through data attribute
         if ('' === button) return null;
